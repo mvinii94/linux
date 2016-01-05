@@ -4,7 +4,7 @@
 LIMITE="80"
 EMAIL="your@email.com"
 
-for $PART in $(awk '{print $1}'); do
+for $PART in $(df -h | awk '{print $1}'); do
     USAGE=(df -h $PART | awk '{print $5}' | grep -v Use | sort -nr | awk -F % '{print $1}' | head -n1)
 
     if [ $USAGE -gt "$LIMITE" ]
