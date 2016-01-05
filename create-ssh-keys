@@ -1,13 +1,13 @@
-Criar chaves de acesso SSH:
+Create SSH Key:
 ssh-keygen -t rsa -b 4096
 
-Abre o arquivo da chave e copie:
+GET the private key content and save it:
 vim ~/.ssh/id_rsa
 
-Crie o arquivo "authorized_keys" com o conteúdo da nova chave:
+Append the public key in the file (authorized_keys)
 cat ~/.ssh/id_rsa.pub > ~/.ssh/authorized_keys
 
-Deixa o arquivo "authorized_keys" com as permissões corretas:
+Give the correct permission to the file:
 chmod 600 ~/.ssh/authorized_keys
 
 
