@@ -1,0 +1,11 @@
+Search for .log files anywhere in the current directory recursively:
+
+find . -name "*.log"
+
+Delete all .log files:
+
+find . -name "*.log" | xargs rm
+
+Find large files:
+
+find . -type f -size +500M
