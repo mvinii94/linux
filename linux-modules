@@ -1,0 +1,15 @@
+List currently loaded kernel modules:
+	lsmod
+
+List all available modules:
+	find /lib/modules/$(uname -r) -type f -iname "*.ko"
+
+Load Module:
+	modprobe <module_name>
+	or
+	insmod <mod_name>
+
+Remove a module: 
+	modprobe -r <module_name>
+	or
+	rmmod <mod_name>
