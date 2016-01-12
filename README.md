@@ -1,2 +1,2 @@
 # linux
-Linux scripts ans commands to help
+Linux scripts and commands to help
