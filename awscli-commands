@@ -1,0 +1,20 @@
+*List all your instaces in a region:
+  aws ec2 describe-instances --output json --region us-east-1 | jq -c '.Reservations[]  | .Instances[] | {InstanceId}'
+
+*List all your instances in a region, with instance type and Public Ip Address:
+  aws ec2 describe-instances --output json --region us-east-1 | jq -c '.Reservations[]  | .Instances[] | {InstanceId, InstanceType, PublicIpAddress}'
+
+*List your stopped instances and the reason that is stopped:
+  aws ec2 describe-instances --filters Name=instance-state-name,Values=stopped --region us-east-1 --output json | jq -r '.Reservations[] | .Instances[] | {InstanceId, StateReason}'
+
+*List your running instances which Tag Name contains the word ‘production’:
+  aws ec2 describe-instances --output json --region us-east-1 --filter "Name=instance-state-name,Values=running" "Name=tag-key,Values=Name" "Name=tag-value,Values=*production*"
+
+*Check your SSL certificates expiration date:
+  aws iam list-server-certificates --output json | jq -c '.ServerCertificateMetadataList[] | {Expiration,ServerCertificateName}'
+
+*List your instances that use the same ssh key:
+  aws ec2 describe-instances --output json --region us-east-1 --filter Name="key-name",Values="name-of-ssh-key"
+
+*Migrate a bucket to another region:
+  aws s3 sync s3://source-bucket s3://dest-bucket --source-region us-west-1 --region us-west-2
