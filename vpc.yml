@@ -1,9 +1,9 @@
 ---
-# play.yml
+# vpc.yml - usage: ansible-playbook -i "localhost," -c local vpc.yml --extra-vars "region=sa-east-1"
 - hosts: localhost
   vars:
     vpc_list:
-      - region: {{ region }}
+      - region: "{{ region }}"
         state: present
         #VPC CIDR BLOCK
         cidr_block: 20.100.0.0/16
