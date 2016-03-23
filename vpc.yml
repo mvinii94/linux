@@ -23,8 +23,8 @@
     - name: process vpc
       ec2_vpc:
         #USE THIS VARs OR ENV VARs
-        aws_access_key: AKIAJBBEP3MSDRTQJA2Q
-        aws_secret_key: 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
+        aws_access_key: XXXXXXXXXXXXXXXXXXX
+        aws_secret_key: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
         region: "{{ item.region }}"
         state: "{{ item.state }}"
         cidr_block: "{{ item.cidr_block }}"
