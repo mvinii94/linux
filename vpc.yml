@@ -1,5 +1,5 @@
 ---
-# vpc.yml - usage: ansible-playbook -i "localhost," -c local vpc.yml --extra-vars "region=sa-east-1"
+# vpc.yml - usage: ansible-playbook -i "localhost," -c local vpc.yml --extra-vars "region=sa-east-1 tag=1234"
 - hosts: localhost
   vars:
     vpc_list:
@@ -23,12 +23,13 @@
     - name: process vpc
       ec2_vpc:
         #USE THIS VARs OR ENV VARs
-        aws_access_key: XXXXXXXXXXXXXXXX
-        aws_secret_key: SKSKSKSKSKSKSKSKSKSKSKSKSKSKSK
+        aws_access_key: AKIAJBBEP3MSDRTQJA2Q
+        aws_secret_key: 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
         region: "{{ item.region }}"
         state: "{{ item.state }}"
         cidr_block: "{{ item.cidr_block }}"
         internet_gateway: True
+        resource_tags: { "PV":"{{ tag }}" }
         subnets: "{{ item.subnets }}"
         route_tables:
           - subnets:
@@ -36,5 +37,8 @@
             routes:
               - dest: 0.0.0.0/0
                 gw: igw
+        wait: yes
       with_items: vpc_list
       register: ec2_vpc_out
+
+    - debug: var=ec2_vpc_out
