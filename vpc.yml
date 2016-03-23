@@ -1,0 +1,40 @@
+---
+# play.yml
+- hosts: localhost
+  vars:
+    vpc_list:
+      - region: {{ region }}
+        state: present
+        #VPC CIDR BLOCK
+        cidr_block: 20.100.0.0/16
+        # SUBNETS
+        subnets:
+          - cidr: 20.100.50.0/24
+            az: sa-east-1a
+            resource_tags: { "Name": "subnet-a", "Tier": "public" }
+          - cidr: 20.100.100.0/24
+            az: sa-east-1b
+            resource_tags: { "Name": "subnet-b", "Tier": "private" }
+          - cidr: 20.100.150.0/24
+            az: sa-east-1c
+            resource_tags: { "Name": "subnet-c", "Tier": "private" }
+
+  tasks:
+    - name: process vpc
+      ec2_vpc:
+        #USE THIS VARs OR ENV VARs
+        aws_access_key: XXXXXXXXXXXXXXXX
+        aws_secret_key: SKSKSKSKSKSKSKSKSKSKSKSKSKSKSK
+        region: "{{ item.region }}"
+        state: "{{ item.state }}"
+        cidr_block: "{{ item.cidr_block }}"
+        internet_gateway: True
+        subnets: "{{ item.subnets }}"
+        route_tables:
+          - subnets:
+              - 20.100.50.0/24
+            routes:
+              - dest: 0.0.0.0/0
+                gw: igw
+      with_items: vpc_list
+      register: ec2_vpc_out
