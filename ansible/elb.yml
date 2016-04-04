@@ -1,0 +1,28 @@
+---
+# vpc.yml - usage: ansible-playbook -i "localhost," -c local elb.yml --extra-vars "project=nomedoprojeto region=us-east-1 sg=sg-93891"
+- hosts: localhost
+
+  - name: Create an ELB
+    local_action:
+      module: ec2_elb_lb
+      aws_access_key: XXXXXXXXXXXXXXXXXXXXXXXx
+      aws_secret_key: ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
+      name: "{{ project }}"
+      state: present
+      cross_az_load_balancing: "yes"
+      security_group_ids: "{{ sg }}"
+      region: "{{ region }}"
+      zones:
+        - "{{ region }}a"
+        - "{{ region }}b"
+      listeners:
+        - protocols: http
+        - load_balancer_port: 80
+        - instance_port: 80
+      stickiness:
+        type: loadbalancer
+        enable: yes
+        expiration: 300
+    register: elb_facts_out
+
+  - debug: var=elb_facts_out

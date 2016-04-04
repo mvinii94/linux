@@ -1,0 +1,24 @@
+---
+# vpc.yml - usage: ansible-playbook -i "localhost," -c local ami-find.yml --extra-vars "region=sa-east-1"
+# Ubuntu:
+  # name: *hvm-ssd/ubuntu-trusty-14.04-amd64-server*
+  # owner: ow099720109477
+  # sort: name
+# Amazon:
+  # name: amzn-ami-hvm-2016.03.0.x86_64-gp2
+  # owner: amazon
+- hosts: localhost
+  tasks:
+    - name: Find AMI
+      ec2_ami_find:
+        aws_access_key: XXXXXXXXXXXXXXXXXXX
+        aws_secret_key: YYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
+        region: "{{ region }}"
+        name: "amzn-ami-hvm-2016.03.0.x86_64-gp2"
+        owner: amazon
+        sort: name
+        virtualization_type: hvm
+        sort_order: descending
+        sort_end: 1
+      register: ami_find
+    - debug: var=ami_find.results[0].ami_id

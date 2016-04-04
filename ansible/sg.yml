@@ -1,0 +1,42 @@
+---
+# vpc.yml - usage: ansible-playbook -i "localhost," -c local sg.yml --extra-vars "vpcid=vpc-84c2e0e1 region=sa-east-1"
+- hosts: localhost
+  tasks:
+    - name: Create SG
+      ec2_group:
+        name: SecurityGroupAnsible
+        description: SecurityGroup created with ansible
+        state: present
+        vpc_id: "{{ vpcid }}"
+        region: "{{ region }}"
+        aws_access_key: XXXXXXXXXXXXXXXXXX
+        aws_secret_key: ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
+        rules:
+          - proto: tcp
+            from_port: 80
+            to_port: 80
+            cidr_ip: 0.0.0.0/0
+          - proto: tcp
+            from_port: 22
+            to_port: 22
+            cidr_ip: 54.207.9.253/32
+          - proto: tcp
+            from_port: 443
+            to_port: 443
+            cidr_ip: 0.0.0.0/0
+          - proto: tcp
+            from_port: 10050
+            to_port: 10051
+            cidr_ip: 54.86.144.79/32
+      register: sg_facts_out
+    - debug: var=sg_facts_out
+    - debug: var=sg_facts_out.group_id
+
+#    - name: Tag the Securitygroup
+#      ec2_tag:
+#        region: "{{ region }}"
+#        resource: "{{ sg_facts_out.group_id }}"
+#        state: present
+#        tags:
+#          Name: SecurityGroupAnsible
+#      when: sg_facts_out.changed
