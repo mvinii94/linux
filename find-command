@@ -9,3 +9,7 @@ find . -name "*.log" | xargs rm
 Find large files:
 
 find . -type f -size +500M
+
+Find files with php extension:
+
+find ./ -type f -iname \*.php
