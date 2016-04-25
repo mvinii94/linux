@@ -1,5 +1,5 @@
 #!/bin/bash
-#USAGE: bash remove-sg-rules.sh sg-uyei123 ambev 
+#USAGE: bash remove-sg-rules.sh sg-uyei123 profilename 
 SGid=$1
 CLIENT=$2
 REMOVE=$(aws ec2 describe-security-groups --group-ids ${SGid} --profile ${CLIENT} --output json | jq -c '.SecurityGroups[] | .IpPermissions[] | {IpProtocol,FromPort,ToPort,IpRanges}')
