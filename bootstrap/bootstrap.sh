@@ -43,6 +43,7 @@ EXTRACT () {
 }
 
 #USAGE:
+#EXTRACT file.tar.gz
 #HEADER "testando o site"
 #LOG "${DONE}"
 #LOG "${ERROR} - deploy error"
