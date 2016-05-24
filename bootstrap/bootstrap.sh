@@ -20,7 +20,7 @@ function HEADER(){
  echo -e "${BLUE}##############################################################################################${END}"
 }
 
-EXTRACT () {
+function EXTRACT () {
    if [ -f $1 ] ; then
        case $1 in
         *.tar.bz2)      tar xvjf $1 ;;
