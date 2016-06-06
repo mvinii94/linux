@@ -47,7 +47,7 @@ function EXTRACT () {
 #HEADER "testando o site"
 #LOG "${DONE}"
 #LOG "${ERROR} - deploy error"
-#echo "[${DATE}]"
+#echo "${DATE}"
 #echo "${DONE}"
 #echo "${WARNING}"
 #echo "${ERROR}"
