@@ -31,5 +31,5 @@
 ## Check scan status:
 ``` curl -s -X GET -H 'Content-Type: application/json' "http://127.0.0.1:7331/scans/${ID}" | jq -c '{status, busy}' ```
 
-## Dowload scan report:
+## Download scan report:
 ``` wget http://127.0.0.1:7331/scans/"${ID}"/report.html.zip ```
