@@ -10,6 +10,21 @@
 
 ``` curl -X POST -H 'Content-Type: application/json' -d @file.json http://127.0.0.1:7331/scans ```
 
+## file.json Example:
+```
+{
+"url":    "http://infoaws.com",
+
+    "scope": {
+            "page_limit": 10
+                
+    },
+        "checks": ["*"]
+
+}
+
+```
+
 ##Output
 ``` {"id":"43db9452c2b17556bde59f0eb89f9952"}```
 
