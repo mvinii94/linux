@@ -1,0 +1,9 @@
+{
+"url":    "https://www.skol.com.br/",
+
+    "scope": {
+        "page_limit": 100
+    },
+
+    "checks": ["*"]
+}
