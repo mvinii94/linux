@@ -11,13 +11,10 @@ RUN cd /opt/ && wget -q -O arachni.tar.gz "https://github.com/Arachni/arachni/re
 
 # Setup Arachni
 RUN cd /opt/ && tar xzfv arachni.tar.gz && mv arachni-1.4-0.5.10 arachni
-RUN echo "nohup /opt/arachni/bin/arachni_rest_server &" >> /etc/rc.local
-RUN echo "nohup /opt/arachni/bin/arachni_web -o 0.0.0.0 -p 8080 &" >> /etc/rc.local
 RUN chmod -Rf +x /opt/arachni/bin/*
-RUN chmod -Rf 775 /opt/arachni/bin/*
 
-# EXPOSE PORTS
-EXPOSE 7331:7331
+# EXPOSE
+EXPOSE 7331
 
 # CMD ON INIT
 CMD ["/opt/arachni/bin/arachni_rest_server","--address","0.0.0.0"]
