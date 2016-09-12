@@ -1,5 +1,5 @@
 ---
-# vpc.yml - usage: ansible-playbook -i "localhost," -c local vpc.yml --extra-vars "region=sa-east-1 tag=1234"
+# vpc.yml - usage: ansible-playbook -i "localhost" -c local vpc.yml --extra-vars "region=sa-east-1 tag=1234"
 - hosts: localhost
   vars:
     vpc_list:
