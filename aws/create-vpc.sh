@@ -14,7 +14,7 @@
 DATE=$(date +%d%b%Y-%Hh%Mm)
 CLIENT=$1
 AWS_REGION=$2
-MYIP=$(curl ifconfig.me)
+MYIP=$(curl -s ifconfig.me)
 
 #-------------------------------------------------------------------------------
 # Functions
