@@ -1,5 +1,4 @@
 #!/bin/bash
-# Marcus Vinícius de Mattos Ramos
 # VARS:
 LIMIT="80"
 EMAIL="your@email.com"
